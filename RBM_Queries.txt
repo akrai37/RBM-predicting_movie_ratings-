@@ -1,0 +1,97 @@
+ n---from pandas.read_csv documentation:
+
+delimiter : str, default None
+
+Alternative argument name for sep is delimiter
+
+
+---.values is an attribute of the dataframe class and np.array is a function from numpy.
+
+
+
+---I would agree that going by the max value is not the appropriate thing to do. We should count the unique values
+
+len(np.unique(np.concatenate([training_dataset[:,0], test_dataset[:, 0]])))
+
+
+35 line--ratings[idmovies-1]  idmovies is just  the number representing INDEX and we are subtracting 1 to adjust the index
+
+
+
+-------when i used ratings=[0]*nb_movie, it caused an error.
+
+also can u explain the difference between id_ratings=np.zeroes and using id_ratings=[0]*nb_movie
+One gives a list and another, a numpy array. We are working with arrays, thats why np.zeros works and the other one doesnt.
+
+------The most important difference between the two is the way these frameworks do  the computational graphs. In Tensorflow, you first have to define the entire computation graph of the model and then run the ML model. While in PyTorch, you can define the graph on-the-go, and this is particularly helpful while using variable length inputs in RNNs
+
+
+------We get one row of nh samples. Thats what this line means. That is how a is initialized.(why 1 was used in the self}
+
+-----At 3:00, why the instructor saying if the larger than 0.25 (random number from Bernoulli sampling), then the visible node will get the value zero? Usually if the probability is larger than the bar, it will give "1"/positive answer. Why this one will give a negative answer?
+
+At that point, were doing negative sampling. Thats why
+
+------So the sigmoid activation function will learn from the network that what values it should take i.e 0.7 in sample_h or 0.25 in sample_v to decide whether to output a 0 or 1.
+
+
+
+-----You always transpose whenever the matrix dimensions dont agree. In Matrix multiplication, let's say you want to multiply two matrices of size (4x3) and (2x3). Then in order to do that you have to transpose (2x3) so it can be a (3x2). Then the dimensions agree, so it will be (4x3) x (3x2), and you will get a (4x2) output matrix.
+
+-----Bias: “Bias is error introduced in your model due to over simplification of machine learning algorithm.” It can lead to under fitting. When you train your model at that time model makes simplified assumptions to make the target function easier to understand.
+
+-----I know its an energy based model, we try to minimize the energy level by optimizing the weights, by optimizing the weights we converge towards the minimal, energy but my question is what is the need of minimizing the energy ? Is it related to minimizing the loss as we have done in the previous tuts by using stochastic gradient descent ??
+
+----visualization for boltzamn machine. REmember to construct the input nodes ,only activated hidden nodes will be used to for calculations.for each hidden nodes not all input nodes wi;; be used  believe.
+
+
+---------Hadelin says that vk is our input because it will be the output after k steps. I did not understand how the vk used in the train function is user here as input.explain
+
+In my understanding vk is the output if the system after k steps of contrastive divergence. v0 is the input to the first steps (also the actual user values). In beginning both these are same, but as the training progresses, v0 remains the same but vk is re-calculated in each step. Finally we use both these values (along with the hidden layer probabilities) to update the weights.
+
+
+
+----Its because the loss for one epoch is calculated this way.
+
+
+
+-------v0 = training_set[id_user:id_user+batch_size]
+
+ph0,_ = rbm.sample_h(v0)
+
+#################
+
+My interpretation of the  above two lines,
+
+v0 actually contains 10 different users' ratings.
+
+We are passing in all the 10 sets of ratings to the visible nodes of the rbm with one sample_h() call.
+
+The return value ph0, represent the probabilities of h nodes after these 10 sets of input.
+
+
+
+--------------In line 92, we retain the -1 values (i.e., the movies the user has not seen) in the vk tensor:  vk[v0<0] = v0[v0<0]
+
+Now, when we train the RBM, shouldn't the -1 values be ignored/removed since they are essentially unknowns. But instead, by including them in the training process (as shown), aren't we letting the hidden nodes be incorrectly influenced by these -1s and maybe derive some correlations based on these unwatched movies?
+
+What I observe in the predictions is that, on average, only about 20% of the unwatched movies per user were even given any predictions which are greater than -1.
+Therefore, what I think is happening is that by including -1 in the training, the Boltzmann Machine is also trying to predict -1s. Which shouldn't be the case.
+
+
+
+
+----------------why vo and vk are taking 10 user ratings at a time? doesnt the ratings get mixed up??
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---------running RBM and checking the loss is only half the story at best. 
+
+
+------------- v_all = np.vstack([v_all, v_numpy])  for viewing the predicted value
+
+
+-------------1. what is the relationship between training and test set? how is training code has any significance to the test code? we are not even using any trained object or variable that will the test code to predict the new values
+
