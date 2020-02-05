@@ -115,7 +115,7 @@ print('test loss: '+str(test_loss/s))
 
 
 
-#1) Create a predict method on the RBM class. look in the rbm class
+#1) Create a 'predict' method in the RBM class. Look in the rbm class
 
 
 
