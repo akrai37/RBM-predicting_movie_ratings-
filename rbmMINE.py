@@ -163,6 +163,8 @@ print('test loss : '+str(test_loss/s))
         
 #---------------------------------------------------------------------------------------------------------------------
 
+# below is the right method topredict and compare
+
 #1) Created a predict method in the RBM class. look in the rbm class
 
 
