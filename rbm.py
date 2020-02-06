@@ -114,9 +114,9 @@ for id_user in range(nb_users):
 print('test loss: '+str(test_loss/s))
 
 
+# below is the right method to predict and compare
 
 #1) Create a 'predict' method in the RBM class. Look in the rbm class
-
 
 
 #2) Take any user by the test dataset and Take the whole list of movies of that user and convert to PyTorch
