@@ -185,8 +185,10 @@ input_output = np.vstack([user_input, output])
 #we are not even using any trained object or variable that will the test code to predict the new values     
 #the possible answer could be, since it is an UNSUPERVISED model , there shouldnt be any connection between the training and test models.
 #we need to train the model to find the optimum hidden nodes,along with optimum weights and bias. thats the purpose of training.(note:-weights are not reconstructed 
-#during constructing the input, they remain the same. They are reconstructed during next iteration(to get optimized). They are only constructed or changed during forward iteration. Thats how it works in RBM ) 
-    
+#during constructing the input, they remain the same. They are reconstructed during next iteration(to get optimized). They are only constructed or changed during forward iteration. 
+#But 'bias' are different for both input and hidden nodes(that are used for construction of these nodes respectively). Thats how it works in RBM ) .
+
+
 #how are we dealing with -1 here? the prediction code(after line 156) did a fantastic job predicting the input values and comparing it with the intial one.cont.
 #with -1 ratings replaced with '0' or '1' but the question remains how it is dealing with -1 and replacing it with 1 or 0 as desired by us? Which part of code deals with this?    
    
